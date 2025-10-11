@@ -18,6 +18,29 @@
             --warning: #f9ab00;
             --success: #34a853;
             --gcash: #0033A0;
+            
+            /* Dark mode variables */
+            --bg-color: #f5f7fa;
+            --card-bg: white;
+            --text-color: #202124;
+            --sidebar-bg: linear-gradient(to bottom, var(--primary), var(--secondary));
+            --border-color: #dadce0;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --hover-color: rgba(0, 0, 0, 0.01);
+            --table-header-bg: rgba(0, 0, 0, 0.02);
+        }
+        
+        .dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e8eaed;
+            --sidebar-bg: linear-gradient(to bottom, #0d47a1, #002171);
+            --border-color: #3c4043;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-color: rgba(255, 255, 255, 0.05);
+            --table-header-bg: rgba(255, 255, 255, 0.05);
+            --gray: #9aa0a6;
+            --light-gray: #5f6368;
         }
         
         * {
@@ -28,9 +51,10 @@
         }
         
         body {
-            background-color: #f5f7fa;
-            color: var(--dark);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         .container {
@@ -41,11 +65,12 @@
         /* Sidebar Styles */
         .sidebar {
             width: 250px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            background: var(--sidebar-bg);
             color: white;
             padding: 20px 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 0 10px var(--shadow-color);
             z-index: 100;
+            transition: background 0.3s;
         }
         
         .logo {
@@ -110,7 +135,7 @@
             align-items: center;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .user-info {
@@ -149,20 +174,42 @@
             font-size: 14px;
         }
         
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--hover-color);
+        }
+        
         .page-title {
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--text-color);
         }
         
         /* Card Styles */
         .card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px var(--shadow-color);
             padding: 20px;
             margin-bottom: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
         
         .card-header {
@@ -171,13 +218,13 @@
             align-items: center;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .card-title {
             font-size: 18px;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-color);
         }
         
         /* Profile Section */
@@ -224,7 +271,7 @@
             border-radius: 50%;
             margin: 0 auto 15px;
             overflow: hidden;
-            border: 3px solid var(--light-gray);
+            border: 3px solid var(--border-color);
             position: relative;
         }
         
@@ -257,14 +304,14 @@
         }
         
         .requirement-item {
-            border: 1px solid var(--light-gray);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 15px;
             transition: all 0.3s ease;
         }
         
         .requirement-item:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
         
         .requirement-header {
@@ -341,18 +388,18 @@
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
         }
         
         th {
-            background-color: rgba(0, 0, 0, 0.02);
+            background-color: var(--table-header-bg);
             font-weight: 600;
             color: var(--gray);
             font-size: 14px;
         }
         
         tr:hover {
-            background-color: rgba(0, 0, 0, 0.01);
+            background-color: var(--hover-color);
         }
         
         .grade {
@@ -388,10 +435,10 @@
         }
         
         .schedule-day {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 8px;
             padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px var(--shadow-color);
         }
         
         .day-header {
@@ -399,7 +446,7 @@
             margin-bottom: 10px;
             text-align: center;
             padding-bottom: 8px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .schedule-item {
@@ -425,16 +472,16 @@
         }
         
         .account-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px var(--shadow-color);
             padding: 20px;
         }
         
         .account-card h3 {
             font-size: 18px;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--text-color);
         }
         
         .amount {
@@ -464,19 +511,19 @@
         }
         
         .doc-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px var(--shadow-color);
             padding: 20px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
-            border: 2px solid var(--light-gray);
+            border: 2px solid var(--border-color);
         }
         
         .doc-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px var(--shadow-color);
             border-color: var(--primary);
         }
         
@@ -489,7 +536,7 @@
         .doc-card h3 {
             font-size: 18px;
             margin-bottom: 10px;
-            color: var(--dark);
+            color: var(--text-color);
         }
         
         .doc-card p {
@@ -523,9 +570,9 @@
         }
         
         .payment-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px var(--shadow-color);
             padding: 20px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -534,7 +581,7 @@
         
         .payment-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px var(--shadow-color);
         }
         
         .payment-card.gcash {
@@ -553,7 +600,7 @@
         .payment-card h3 {
             font-size: 18px;
             margin-bottom: 10px;
-            color: var(--dark);
+            color: var(--text-color);
         }
         
         .payment-card p {
@@ -659,7 +706,7 @@
         }
         
         .modal-content {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 10px;
             width: 90%;
             max-width: 800px;
@@ -667,6 +714,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             max-height: 90vh;
             overflow-y: auto;
+            transition: background-color 0.3s;
         }
         
         .modal-header {
@@ -675,7 +723,7 @@
             align-items: center;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .modal-title {
@@ -735,7 +783,7 @@
         
         .gcash-qr img {
             max-width: 100%;
-            border: 1px solid var(--light-gray);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 10px;
         }
@@ -761,8 +809,8 @@
         }
         
         .document-preview {
-            background-color: #f9f9f9;
-            border: 1px solid var(--light-gray);
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
             margin: 15px 0;
@@ -785,7 +833,7 @@
             justify-content: space-between;
             margin-bottom: 10px;
             padding: 8px 0;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .document-label {
@@ -804,13 +852,13 @@
         }
         
         .document-table th, .document-table td {
-            border: 1px solid var(--light-gray);
+            border: 1px solid var(--border-color);
             padding: 10px;
             text-align: left;
         }
         
         .document-table th {
-            background-color: rgba(0, 0, 0, 0.02);
+            background-color: var(--table-header-bg);
             font-weight: 600;
         }
         
@@ -818,7 +866,7 @@
             text-align: center;
             margin-top: 30px;
             padding-top: 10px;
-            border-top: 1px solid var(--light-gray);
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
@@ -856,6 +904,9 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
                     <button class="upload-btn" id="change-profile-btn">
                         <i class="fas fa-camera"></i> Change Photo
                     </button>
@@ -1662,6 +1713,36 @@
     </div>
     
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply the saved theme on page load
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            // Toggle dark mode class
+            document.body.classList.toggle('dark-mode');
+            
+            // Update icon
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
         // Navigation between sections
         const navLinks = document.querySelectorAll('.nav-links li');
         const contentSections = document.querySelectorAll('.content-section');
