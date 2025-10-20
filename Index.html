@@ -215,6 +215,11 @@
             align-items: center;
             gap: 15px;
         }
+
+        /* Hide the small header user-info by default; student profile will appear in Profile section only */
+        .user-info {
+            display: none;
+        }
         
         .theme-toggle {
             background: none;
@@ -232,6 +237,20 @@
         
         .theme-toggle:hover {
             background-color: var(--hover-color);
+        }
+
+        /* Fixed theme toggle in top-right corner so it's always available */
+        .theme-toggle.fixed-top-right {
+            position: fixed;
+            top: 14px;
+            right: 18px;
+            z-index: 1100;
+            background-color: transparent;
+        }
+
+        /* Give main content some top padding so fixed button doesn't overlap */
+        .main-content.with-fixed-theme {
+            padding-top: 60px;
         }
         
         .page-title {
@@ -297,6 +316,11 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
+
+        /* Remove stray icons/text in detail labels */
+        .profile-details .detail-item i {
+            display: none;
+        }
         
         .detail-item {
             margin-bottom: 20px;
@@ -338,6 +362,38 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Default placeholder icons (like Facebook) */
+        #profile-default-icon,
+        #header-default-icon {
+            position: absolute;
+            font-size: 64px;
+            color: rgba(0,0,0,0.25);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* Header small avatar default icon */
+        .user-avatar #header-default-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: none;
+            font-size: 20px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Hide the native file input, keep only the blue button */
+        #profile-picture-input {
+            display: none;
         }
         
         .btn {
@@ -1206,6 +1262,44 @@
         .settings-section {
             margin-bottom: 30px;
         }
+
+        /* Place change password button at the bottom-left of the settings section */
+        .btn-change-password {
+            margin-top: 20px;
+        }
+
+        /* If you want the button pinned to the very bottom of the card, use this container styling */
+        .settings-section .btn-change-password {
+            display: inline-block;
+        }
+
+        .card-footer {
+            padding: 18px 25px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-start;
+            background-color: transparent;
+        }
+
+        /* Ensure footer left padding matches card content so button aligns with headings */
+        .settings-footer {
+            margin-top: 10px;
+            padding-left: 25px; /* same as .card padding-left */
+        }
+
+        /* Remove any accidental extra left margin on the button */
+        .settings-footer .btn-change-password {
+            margin-left: 0;
+        }
+        /* Small allowance between icon and text inside Change Password button */
+        .btn-change-password i {
+            margin-right: 8px;
+        }
+
+        /* Add extra bottom padding so the change password button sits lower in the card */
+        .card .settings-footer {
+            padding-bottom: 30px;
+        }
         
         .settings-section h3 {
             font-size: 18px;
@@ -1416,8 +1510,7 @@
             <div class="header">
                 <div class="user-info">
                     <div class="user-avatar">
-                        <img id="profile-img" src="" alt="John Dex">
-                        <span id="avatar-initials">JD</span>
+                        <img id="profile-img" src="" alt="">
                     </div>
                     <div class="user-details">
                         <h2>John Dex Francisco</h2>
@@ -1428,9 +1521,7 @@
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                         <i class="fas fa-moon"></i>
                     </button>
-                    <button class="btn btn-primary" id="change-profile-btn">
-                        <i class="fas fa-camera"></i> Change Photo
-                    </button>
+                    <!-- Change Photo button removed from header per request. Theme toggle remains. -->
                 </div>
             </div>
             
@@ -1538,13 +1629,13 @@
                         </div>
                         <div class="profile-image">
                             <div class="profile-img-container">
-                                <img id="profile-picture" src="" alt="Profile Picture">
-                                <div id="profile-placeholder">JD</div>
+                                    <img id="profile-picture" src="" alt="">
+                                    <i id="profile-default-icon" class="fas fa-user"></i>
                             </div>
-                            <button class="btn btn-primary" id="upload-profile-btn">
-                                <i class="fas fa-upload"></i> Upload Profile Picture
-                            </button>
-                            <input type="file" id="profile-picture-input" accept="image/*">
+                                <button class="btn btn-primary" id="upload-profile-btn">
+                                    <i class="fas fa-upload"></i>
+                                </button>
+                                <input type="file" id="profile-picture-input" accept="image/*">
                         </div>
                     </div>
                 </div>
@@ -2262,7 +2353,9 @@
                                 <span class="toggle-slider"></span>
                             </label>
                         </div>
-                        <button class="btn btn-primary">
+                    </div>
+                    <div class="card-footer settings-footer">
+                        <button class="btn btn-primary btn-change-password">
                             <i class="fas fa-key"></i> Change Password
                         </button>
                     </div>
@@ -2654,10 +2747,24 @@
                 localStorage.setItem('theme', 'light');
             }
         });
+
+        // Pin the theme toggle to the top-right and add top padding to main content
+        (function pinThemeToggle() {
+            try {
+                if (themeToggle) {
+                    themeToggle.classList.add('fixed-top-right');
+                }
+                const mainContentEl = document.querySelector('.main-content');
+                if (mainContentEl) mainContentEl.classList.add('with-fixed-theme');
+            } catch (err) {
+                // ignore
+            }
+        })();
         
         // Navigation between sections
         const navLinks = document.querySelectorAll('.nav-links li');
         const contentSections = document.querySelectorAll('.content-section');
+    const headerUserInfo = document.querySelector('.header .user-info');
         
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
@@ -2675,6 +2782,15 @@
                 const sectionId = this.getAttribute('data-section');
                 if (sectionId) {
                     document.getElementById(sectionId).classList.add('active');
+                }
+
+                // Show header user-info only on dashboard (if desired) or keep hidden. Keep visible only for profile section.
+                if (headerUserInfo) {
+                    if (sectionId === 'profile') {
+                        headerUserInfo.style.display = 'flex';
+                    } else {
+                        headerUserInfo.style.display = 'none';
+                    }
                 }
                 
                 // Prevent scrolling to top
@@ -2699,6 +2815,11 @@
                     
                     // Show the selected section
                     document.getElementById(sectionId).classList.add('active');
+                    // Toggle header user-info visibility
+                    if (headerUserInfo) {
+                        if (sectionId === 'profile') headerUserInfo.style.display = 'flex';
+                        else headerUserInfo.style.display = 'none';
+                    }
                 }
             });
         });
@@ -2720,35 +2841,81 @@
                     
                     // Show the selected section
                     document.getElementById(sectionId).classList.add('active');
+                    // Toggle header user-info visibility
+                    if (headerUserInfo) {
+                        if (sectionId === 'profile') headerUserInfo.style.display = 'flex';
+                        else headerUserInfo.style.display = 'none';
+                    }
                 }
             });
         });
         
         // Profile Picture Upload
-        document.getElementById('upload-profile-btn').addEventListener('click', function() {
-            document.getElementById('profile-picture-input').click();
-        });
-        
-        document.getElementById('change-profile-btn').addEventListener('click', function() {
-            document.getElementById('profile-picture-input').click();
-        });
-        
-        document.getElementById('profile-picture-input').addEventListener('change', function(e) {
+        const uploadProfileBtn = document.getElementById('upload-profile-btn');
+        const changeProfileBtn = document.getElementById('change-profile-btn'); // header button removed, may be null
+        const profileInput = document.getElementById('profile-picture-input');
+
+        if (uploadProfileBtn) {
+            uploadProfileBtn.addEventListener('click', function() {
+                if (profileInput) profileInput.click();
+            });
+        }
+
+        // Only attach header change button handler if it exists (we removed it from header)
+        if (changeProfileBtn) {
+            changeProfileBtn.addEventListener('click', function() {
+                if (profileInput) profileInput.click();
+            });
+        }
+
+        if (profileInput) profileInput.addEventListener('change', function(e) {
             if (e.target.files && e.target.files[0]) {
                 const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    document.getElementById('profile-picture').src = e.target.result;
-                    document.getElementById('profile-img').src = e.target.result;
-                    document.getElementById('profile-placeholder').style.display = 'none';
-                    document.getElementById('profile-picture').style.display = 'block';
-                    document.getElementById('avatar-initials').style.display = 'none';
-                    document.getElementById('profile-img').style.display = 'block';
+
+                reader.onload = function(ev) {
+                    const dataUrl = ev.target.result;
+                    const profileImgEl = document.getElementById('profile-picture');
+                    const headerImgEl = document.getElementById('profile-img');
+                    const profileDefaultIcon = document.getElementById('profile-default-icon');
+                    const headerDefaultIcon = document.getElementById('header-default-icon');
+                    const avatarInitials = document.getElementById('avatar-initials');
+
+                    if (profileImgEl) {
+                        profileImgEl.src = dataUrl;
+                        profileImgEl.style.display = 'block';
+                    }
+                    if (headerImgEl) {
+                        headerImgEl.src = dataUrl;
+                        headerImgEl.style.display = 'block';
+                    }
+                    if (profileDefaultIcon) profileDefaultIcon.style.display = 'none';
+                    if (headerDefaultIcon) headerDefaultIcon.style.display = 'none';
+                    if (avatarInitials) avatarInitials.style.display = 'none';
                 }
-                
+
                 reader.readAsDataURL(e.target.files[0]);
             }
         });
+
+        // Initialize placeholder visibility on load
+        (function initProfilePlaceholders() {
+            const profileImgEl = document.getElementById('profile-picture');
+            const headerImgEl = document.getElementById('profile-img');
+            const profileDefaultIcon = document.getElementById('profile-default-icon');
+            const headerDefaultIcon = document.getElementById('header-default-icon');
+            const avatarInitials = document.getElementById('avatar-initials');
+
+            // If there's no src set, show default icons/initials
+            if (profileImgEl && !profileImgEl.src) {
+                if (profileDefaultIcon) profileDefaultIcon.style.display = '';
+                if (profileImgEl) profileImgEl.style.display = 'none';
+            }
+            if (headerImgEl && !headerImgEl.src) {
+                if (headerDefaultIcon) headerDefaultIcon.style.display = '';
+                if (headerImgEl) headerImgEl.style.display = 'none';
+                if (avatarInitials) avatarInitials.style.display = '';
+            }
+        })();
         
         // Document Upload Modal
         const uploadButtons = document.querySelectorAll('.upload-action');
@@ -2838,6 +3005,22 @@
         
         // Initialize requirements progress
         updateRequirementsProgress();
+
+        // Ensure header user-info visibility matches the initially active section
+        (function initHeaderUserInfo() {
+            try {
+                const activeSection = document.querySelector('.content-section.active');
+                if (headerUserInfo) {
+                    if (activeSection && activeSection.id === 'profile') {
+                        headerUserInfo.style.display = '';
+                    } else {
+                        headerUserInfo.style.display = 'none';
+                    }
+                }
+            } catch (err) {
+                // ignore
+            }
+        })();
         
         // GCash Payment
         document.getElementById('pay-with-gcash').addEventListener('click', function() {
