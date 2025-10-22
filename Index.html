@@ -1712,12 +1712,44 @@
                         <div class="stat-label">Balance Due</div>
                     </div>
 
+<!-- Add this code to your dashboard section, between the Balance Due and Uniforms cards -->
+<div class="stat-card" id="academic-status-card">
+  <div class="stat-value" id="academic-status">
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="margin-bottom:8px">
+        <small style="color:var(--gray);font-weight:500;">3rd Year , 3rd Trime
+        </small>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <small style="color:var(--text-color);">Passed</small>
+        <span style="color:var(--success);font-weight:600;">2</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <small style="color:var(--text-color);">INC</small>
+        <span style="color:var(--danger);font-weight:600;"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <small style="color:var(--text-color);">Dropped</small>
+        <span style="color:var(--danger);font-weight:600;">2</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <small style="color:var(--text-color);">Failed</small>
+        <span style="color:var(--danger);font-weight:600;"></span>
+      </div>
+    </div>
+  </div>
+  <div class="stat-label">Academic Status</div>
+</div>
+
+
                     <div class="stat-card" id="uniforms-summary-card">
                         <div class="stat-value" id="uniforms-summary">
                             <div style="display:flex;flex-direction:column;gap:6px;">
                                 <div style="margin-bottom:8px">
                                     <small style="color:var(--gray);font-weight:500;">College</small>
                                 </div>
+                                
                                 <div style="display:flex;justify-content:space-between;align-items:center;">
                                     <small style="color:var(--text-color);">BSIT Uniform</small>
                                     <i class="fas fa-check-circle" style="color:var(--success)"></i>
@@ -1730,6 +1762,7 @@
                         </div>
                         <div class="stat-label">Uniforms</div>
                     </div>
+                    
 
                     <div class="stat-card" id="drugtest-summary-card">
                         <div class="stat-value" id="drugtest-summary">
@@ -1762,12 +1795,9 @@
                         <div class="stat-value" id="attendance-summary">
                             <div style="display:flex;flex-direction:column;gap:6px;">
                                 <div style="margin-bottom:8px">
-                                    <small style="color:var(--gray);font-weight:500;">Status Overview</small>
+                                    <small style="color:var(--gray);font-weight:500;">4th Year , 1st Trime</small>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <small style="color:var(--text-color);">Attendance</small>
-                                    <span></span>
-                                </div>
+                    
                                 
                                 <div style="display:flex;justify-content:space-between;align-items:center;">
                                     <small style="color:var(--text-color);">Absences</small>
@@ -2206,72 +2236,70 @@
                 <div class="breadcrumb">
                     <a href="#" data-section="dashboard">Dashboard</a> <i class="fas fa-chevron-right"></i> <span>Academic Grades</span>
                 </div>
-                <h1 class="page-title">Academic Grades</h1>
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Summary of Grades</h2>
-                    </div>      
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>School Year</th>
-                                    <th>Year</th>
-                                    <th>Subject</th>
-                                    <th>Professor</th>
-                                    <th>Prelim</th>
-                                    <th>Midterm</th>
-                                    <th>Final</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2024-2025</td>
-                                    <td>Third</td>
-                                    <td>Applications Development and Emerging Technologies</td>
-                                    <td>Chions, Jord Dedal</td>
-                                    <td><span class="grade grade-excellent">1.50</span></td>
-                                    <td><span class="grade grade-excellent">1.25</span></td>
-                                    <td><span class="grade grade-excellent">1.75</span></td>
-                                    <td>Passed</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-2025</td>
-                                    <td>Third</td>
-                                    <td>Information Assurance and Security 2</td>
-                                    <td>Chions, Jord Dedal</td>
-                                    <td><span class="grade grade-good">2.00</span></td>
-                                    <td><span class="grade grade-excellent">1.75</span></td>
-                                    <td><span class="grade grade-excellent">1.75</span></td>
-                                    <td>Passed</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-2025</td>
-                                    <td>Third</td>
-                                    <td>Event Driven Programming</td>
-                                    <td>Chions, Jord Dedal</td>
-                                    <td><span class="grade grade-good">2.25</span></td>
-                                    <td><span class="grade grade-good">2.50</span></td>
-                                    <td><span class="grade grade-good">2.50</span></td>
-                                    <td>Passed</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-2025</td>
-                                    <td>Second</td>
-                                    <td>Cisco Networking 2</td>
-                                    <td>Chions, Jord Dedal</td>
-                                    <td>-</td>
-                                    <td><span class="grade grade-excellent">2.00</span></td>
-                                    <td><span class="grade grade-excellent">2.00</span></td>
-                                    <td>Passed</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
+    <div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>School Year</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Subject</th>
+        <th>Professor</th>
+        <th>Prelim</th>
+        <th>Midterm</th>
+        <th>Final</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2024-2025</td>
+        <td>3rd Year</td>
+        <td>3rd Trime</td>
+        <td>Applications Development and Emerging Technologies</td>
+        <td>Chiong, Joriz</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td style="color: var(--danger); font-weight: 600;">Dropped</td>
+      </tr>
+      <tr>
+        <td>2024-2025</td>
+        <td>3rd Year</td>
+        <td>3rd Trime</td>
+        <td>Information Assurance and Security 2</td>
+        <td>Chiong, Joriz</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td style="color: var(--danger); font-weight: 600;">Dropped</td>
+      </tr>
+      <tr>
+        <td>2024-2025</td>
+        <td>3rd Year</td>
+        <td>3rd Trime</td>
+        <td>Event Driven Programming</td>
+        <td>Chiong, Joriz</td>
+        <td><span class="grade grade-good">2.25</span></td>
+        <td><span class="grade grade-good">2.50</span></td>
+        <td><span class="grade grade-good">2.50</span></td>
+        <td>Passed</td>
+      </tr>
+      <tr>
+        <td>2024-2025</td>
+        <td>3rd Year</td>
+        <td>3rd Trime</td>
+        <td>Cisco Networking 2</td>
+        <td>Chiong, Joriz</td>
+        <td>-</td>
+        <td><span class="grade grade-excellent">2.00</span></td>
+        <td><span class="grade grade-excellent">2.00</span></td>
+        <td>Passed</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
             
             <!-- Uniforms Section -->
             <div id="uniforms" class="content-section">
@@ -2501,19 +2529,22 @@
                             <tbody>
                                 <tr>
                                     <td>Registrar's Office</td>
-                                    <td>Academic Records Clearance</td>
+                                    <td>Academic Records Clearance <br>
+                                    <div class="stat-label">(Ecr Submission & Uploading Ecr)</div> </td>
                                     <td><span class="status-badge status-completed">Completed</span></td>
                                     <td><button class="view-action">View</button></td>
                                 </tr>
                                 <tr>
                                     <td>Accounting Office</td>
-                                    <td>Financial Clearance</td>
+                                    <td>Financial Clearance<br>
+                                    <div class="stat-label">(Budget Legislation)</div</td>
                                     <td><span class="status-badge status-completed">Completed</span></td>
                                     <td><button class="view-action">View</button></td>
                                 </tr>
                                 <tr>
                                     <td>Library</td>
-                                    <td>Library Clearance</td>
+                                    <td>Library Clearance<br>
+                                    <div class="stat-label">(Return Borrowed)</div</td>
                                     <td><span class="status-badge status-completed">Completed</span></td>
                                     <td><button class="view-action">View</button></td>
                                 </tr>
@@ -2524,7 +2555,8 @@
                                     <td><button class="view-action">View</button></td>
                                 </tr>
                                 <tr>
-                                    <td>Department Chair</td>
+                                    <td>Department of Academic Coordinator Requirement
+                                    <br>OIC / HoD / Dean</td>
                                     <td>Department Clearance</td>
                                     <td><span class="status-badge status-completed">Completed</span></td>
                                     <td><button class="view-action">View</button></td>
@@ -2536,7 +2568,8 @@
                                     <td><button class="view-action">View</button></td>
                                 </tr>
                                 <tr>
-                                    <td>Laboratory</td>
+                                    <td>Laboratory<br>
+                                    Campus Coordinator</td>
                                     <td>Laboratory Equipment Clearance</td>
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td><button class="upload-action">Submit</button></td>
@@ -2611,7 +2644,7 @@
                                         <span class="status-badge status-completed">Completed</span>
                                     </div>
                                     
-                                    <div style="display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: var(--border-radius); background: rgba(40, 167, 69, 0.1);">
+                                    <div style="display: flex; align-items: center; gap: 15px; padding: 15px<br>; border-radius: var(--border-radius); background: rgba(40, 167, 69, 0.1);">
                                         <i class="fas fa-check-circle" style="color: var(--success); font-size: 24px;"></i>
                                         <div style="flex: 1;">
                                             <h5 style="margin: 0;">Third Year Drug Test</h5>
